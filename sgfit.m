@@ -1,4 +1,18 @@
-function [A, sig, mu] = gaussfit(x, y, va)
+% SGFIT Shifted Gaussian Fitting with axis-wrapping.
+%     [A, SIG, MU] = GAUSSFIT(X, Y, Xa) calculates the amplitude A, the
+%     width SIG and the mean MU by Gaussian fitting. This function accounts
+%     for the repetitive nature of X around +/-Xa, which commonly appears 
+%     in spectra that are obtained by DFT.
+%
+%     GAUSSFIT derives the fitting using conventional method if Xa is not
+%     supplied. That is, X is not assumed to wrap.
+%
+%     Boon Leng Cheong
+%     Advanced Radar Research Center
+%     University of Oklahoma
+%
+
+function [A, sig, mu] = sgfit(x, y, va)
 
 if ~exist('va', 'var')
     sum_x = sum(x);
