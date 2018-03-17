@@ -1,10 +1,18 @@
 % SGFIT Shifted Gaussian Fitting with axis-wrapping.
-%     [A, SIG, MU] = GAUSSFIT(X, Y, Xa) calculates the amplitude A, the
-%     width SIG and the mean MU by Gaussian fitting. This function accounts
-%     for the repetitive nature of X around +/-Xa, which commonly appears 
+%     [A, SIG, MU] = SGFIT(X, Y, Xa) calculates the amplitude A, the width
+%     SIG and the mean MU by a Gaussian fitting. This function accounts
+%     for the repetitive nature of X around +/- Xa, which commonly appears 
 %     in spectra that are obtained by DFT.
 %
-%     GAUSSFIT derives the fitting using conventional method if Xa is not
+%     When Xa is supplied, the X values are assumed to repeat like samples
+%     in a spectrum would at every 2 * PI interval. Thus, the spectrum can
+%     be converted into a complex-plane representation. Summing all the
+%     vectors provides a proper averaging for samples that wrap around the
+%     aliasing limits (+/- Xa). The width and amplitude are then derived
+%     based on frequency-shifted X-axis, hence the name Shifted Gaussian
+%     Fitting.
+%
+%     SGFIT derives the fitting using conventional method if Xa is not
 %     supplied. That is, X is not assumed to wrap.
 %
 %     Boon Leng Cheong
