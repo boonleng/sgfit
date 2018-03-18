@@ -16,7 +16,7 @@ A = 0.5;
 
 % Mean
 % mu = round(4 * va * (rand(1) - 0.5)) / 2;
-mu = 5;
+mu = 12;
 
 % Width
 sig = 3;
@@ -44,7 +44,6 @@ y = A * exp(-(x - mu) .^ 2 / (2 * sig ^ 2)) + ...
 % y = A * exp(-(x - mu) .^ 2 / (2 * sig ^ 2)) + n;
 
 % Store a copy of the original
-xo = x;
 yo = y;
 
 % Add noise
@@ -54,10 +53,10 @@ y = y + n;
 % th = 0.2 * A;
 th = 0.5 * sqrt(mean(y .^ 2));
 
-%% Method 1
-
 % Mask of good samples
 mask = y > th;
+
+%% Method 1
 
 % Let's say we have a good estimate of noise
 y1 = y - 0.5 * An;
@@ -126,7 +125,7 @@ else
 end
 set(hl, 'LineStyle', '-', 'Marker', '.', 'MarkerSize', 45, 'Color', highlight,  'LineWidth', 15)
 hold on
-hl = plot(xo, y, '.', xo, yo, '-', v, y1s, '--', v, y2s, '-.');
+hl = plot(x, y, '.', x, yo, '-', v, y1s, '--', v, y2s, '-.');
 set(hl(1), 'MarkerSize', 15)
 hold off
 grid on

@@ -33,9 +33,13 @@ if ~exist('va', 'var')
 
     a = d(1); b = d(2); c = d(3);
 
-    mu = -b / (2 * c);
-    sig = sqrt(-1 / (2 * c));
     A = exp(a - b ^ 2 / (4 * c));
+    mu = -b / (2 * c);
+    if c > 0
+        sig = 1.0e-7;
+    else
+        sig = sqrt(-1 / (2 * c));
+    end
 else
     % Normalized angle in [-pi, pi):
     omega = x / va * pi;
@@ -59,7 +63,7 @@ else
     d = M \ B;
     a = d(1); c = d(2);
 
+    A = exp(a);
     mu = mu / pi * va;
     sig = sqrt(-1 / (2 * c));
-    A = exp(a);
 end
